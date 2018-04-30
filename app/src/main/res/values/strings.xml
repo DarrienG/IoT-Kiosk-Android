@@ -7,6 +7,9 @@
     <string name="your_cart">Your cart</string>
     <string name="remove_item">Remove item</string>
     <string name="subtotal">Subtotal: \$%1$s</string>
+    <string name="loading_shopping">Loading our fine selection of merchandise</string>
+    <string name="loading_cart">Loading your cart</string>
+    <string name="subtotal_pending">Subtotal: loading…</string>
     <string name="ordered">Ordered! Add some more items to the cart to buy them!</string>
     <string name="nothing_in_cart">There\'s nothing in your cart right now!</string>
 </resources>

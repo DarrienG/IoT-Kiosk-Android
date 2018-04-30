@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.core.content.edit
@@ -43,7 +45,7 @@ class ShopActivity : AppCompatActivity() {
         val sm = r.create(SnackModel::class.java)
         sm.getSnacks().enqueue(object : Callback<List<Map<String, RShopItem>>> {
             override fun onFailure(call: Call<List<Map<String, RShopItem>>>?, t: Throwable?) {
-                throw RuntimeException(t)
+                // no
             }
 
             override fun onResponse(call: Call<List<Map<String, RShopItem>>>, response: Response<List<Map<String, RShopItem>>>) {
@@ -58,7 +60,7 @@ class ShopActivity : AppCompatActivity() {
                     }
                     setUpWithData(snackList)
                 } else {
-                    throw RuntimeException("Our schema is made of failures")
+                    // no
                 }
             }
         })
@@ -80,6 +82,10 @@ class ShopActivity : AppCompatActivity() {
                         LENGTH_LONG).show()
             }
         }
+
+        loading_layout.visibility = GONE
+        snack_list.visibility = VISIBLE
+
         snack_list.adapter = sa
         snack_list.layoutManager = GridLayoutManager(this,
                 if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 1 else 2)

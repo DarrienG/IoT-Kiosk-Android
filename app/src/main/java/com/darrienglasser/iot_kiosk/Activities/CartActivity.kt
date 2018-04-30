@@ -51,6 +51,7 @@ class CartActivity : AppCompatActivity() {
         buy_view.visibility = GONE
         nothing_view.visibility = VISIBLE
         nothing_text.text = getString(R.string.nothing_in_cart)
+        loading_layout.visibility = GONE
 
         buy_button.isEnabled = false
         subtotal_text.text = String.format(getString(R.string.subtotal), moneyfi(0.00))
@@ -62,8 +63,6 @@ class CartActivity : AppCompatActivity() {
      * Stuff in the cart state.
      */
     private fun setUpForBuying(rawCart: MutableMap<String, *>?) {
-
-
         val itemList = mutableListOf<HolderThing>()
         sp.all.forEach {
             itemList.add(HolderThing(it.key, it.value as Int))
@@ -81,7 +80,7 @@ class CartActivity : AppCompatActivity() {
 
         sm.getSnacks().enqueue(object : Callback<List<Map<String, RShopItem>>> {
             override fun onFailure(call: Call<List<Map<String, RShopItem>>>?, t: Throwable?) {
-                Toast.makeText(applicationContext, "I want to die", LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "I want to die???", LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<List<Map<String, RShopItem>>>, response: Response<List<Map<String, RShopItem>>>) {
@@ -105,7 +104,7 @@ class CartActivity : AppCompatActivity() {
                         initBuyViews(cartList, numItems)
                     }
                 } else {
-                    throw RuntimeException("I am trash")
+                    // no
                 }
             }
         })
@@ -128,6 +127,10 @@ class CartActivity : AppCompatActivity() {
             if (cash < 0) cash = 0.00
             subtotal_text.text = String.format(getString(R.string.subtotal), moneyfi(cash))
         }
+
+        buy_view.visibility = VISIBLE
+        loading_layout.visibility = GONE
+
         cart_list.adapter = sa
         cart_list.layoutManager = GridLayoutManager(this,
                 if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 1 else 2)
