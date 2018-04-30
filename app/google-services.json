@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "183035722692",
+    "firebase_url": "https://iot-class-200317.firebaseio.com",
+    "project_id": "iot-class-200317",
+    "storage_bucket": "iot-class-200317.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183035722692:android:47fcb028da85b801",
+        "android_client_info": {
+          "package_name": "com.darrienglasser.iot_kiosk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183035722692-rhm8c0hqheat3aoo8vgr8o2frc3hsea0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.darrienglasser.iot_kiosk",
+            "certificate_hash": "e02f2d30ea767abd7e5f0f78c477771c39985234"
+          }
+        },
+        {
+          "client_id": "183035722692-bgpljf73id6p8r6ai5o01bms91vf6rt2.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "183035722692-u57otptbq074a967ov547a76t4dqf8pi.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "183035722692-5s2vbmjbeibo0a21dt5nui6vmjmfmr8d.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "183035722692-s3g0cmkgm99miltnjahpupv03fq6jglo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd872YoYJRuYCYddS8-Atgy-mXRNx5zVk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183035722692-bgpljf73id6p8r6ai5o01bms91vf6rt2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

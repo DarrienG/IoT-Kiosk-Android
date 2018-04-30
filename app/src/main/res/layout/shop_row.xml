@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/snack_view"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_placeholder_snack"/>
+
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          android:layout_margin="8dp"
+                          android:gravity="center_vertical"
+                          android:orientation="vertical">
+
+                <TextView android:id="@+id/name_view"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_margin="8dp"
+                          android:text="@string/placeholder_snack"
+                          android:textColor="#000000"
+                          android:textSize="20sp"
+                          android:textStyle="bold"/>
+
+                <TextView android:id="@+id/price_view"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_margin="8dp"
+                          android:text="@string/placeholder_price"
+                          android:textSize="16sp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/cart_row"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:gravity="center_horizontal|end"
+                      android:orientation="horizontal">
+
+            <Button android:id="@+id/cart_button"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    android:text="@string/add_to_cart"
+                    android:textColor="@color/colorAccent"/>
+
+            <Button android:id="@+id/buy_now_button"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/buy_now"
+                    android:textColor="@color/colorAccent"/>
+
+        </LinearLayout>
+        <LinearLayout android:id="@+id/buy_row"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:gravity="center_horizontal|end"
+                      android:orientation="horizontal">
+
+            <Button android:id="@+id/remove_item"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_remove_item"
+                    android:text="@string/remove_item"
+                    android:textColor="@color/colorAccent"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+

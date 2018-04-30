@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IOT-Kiosk</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="placeholder_snack">Placeholder snack</string>
+    <string name="placeholder_price">\$%1$s</string>
+    <string name="buy_now">Buy now</string>
+    <string name="your_cart">Your cart</string>
+    <string name="remove_item">Remove item</string>
+    <string name="subtotal">Subtotal: \$%1$s</string>
+    <string name="ordered">Ordered! Add some more items to the cart to buy them!</string>
+    <string name="nothing_in_cart">There\'s nothing in your cart right now!</string>
+</resources>
