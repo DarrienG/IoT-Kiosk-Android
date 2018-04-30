@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, ShopActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-            finish()
         }
 
         sign_in_button.setOnClickListener {
@@ -76,23 +75,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        Log.d("YOTE", "firebaseAuthWithGoogle:" + acct.id!!)
-
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         fb.signInWithCredential(credential)
                 .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d("SI", "signInWithCredential:success")
                         val user = fb.currentUser
                         val intent = Intent(applicationContext, ShopActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
-                        finish()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("FAILED AT THE FB STEP", "signInWithCredential:failure", task.exception)
-
                     }
                 })
     }

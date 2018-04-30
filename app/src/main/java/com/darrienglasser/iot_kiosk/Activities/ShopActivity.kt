@@ -20,6 +20,8 @@ import com.darrienglasser.iot_kiosk.Consts.BASE_URL
 import com.darrienglasser.iot_kiosk.Model.RShopItem
 import com.darrienglasser.iot_kiosk.Model.SnackModel
 import com.darrienglasser.iot_kiosk.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_shop.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -77,8 +79,11 @@ class ShopActivity : AppCompatActivity() {
             }
 
             override fun onBuyClick(si: ShopItem) {
+                val b = Buytem(mutableListOf(PartialBuytem(1, "/products/${si.name}")), "pending", FirebaseAuth.getInstance().uid ?: "FAILURE")
+                val fb = FirebaseFirestore.getInstance(FirebaseAuth.getInstance().app)
+                fb.collection("orders").add(b)
                 Toast.makeText(applicationContext,
-                        "Thanks for buying ${si.name}! The payment has automatically been withdrawn using Android Pay",
+                        "Thanks for buying ${si.name}! Your purchase has been ordered",
                         LENGTH_LONG).show()
             }
         }

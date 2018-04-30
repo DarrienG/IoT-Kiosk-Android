@@ -18,6 +18,8 @@ import com.darrienglasser.iot_kiosk.Consts.BASE_URL
 import com.darrienglasser.iot_kiosk.Model.RShopItem
 import com.darrienglasser.iot_kiosk.Model.SnackModel
 import com.darrienglasser.iot_kiosk.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_cart.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -144,8 +146,8 @@ class CartActivity : AppCompatActivity() {
 
         buy_button.isEnabled = true
         buy_button.setOnClickListener {
-            buyItems()
-            Toast.makeText(applicationContext, "BUYING THAT STUFF", LENGTH_LONG).show()
+            buyItems(cartItems, numItems)
+            Toast.makeText(applicationContext, "Ordering...", LENGTH_LONG).show()
         }
     }
 
@@ -153,7 +155,7 @@ class CartActivity : AppCompatActivity() {
      * Puts the view into a bought items state
      * Buys items from the cart, clears them from db, and
      */
-    private fun buyItems() {
+    private fun buyItems(cartItems: MutableList<ShopItem>, numItems: MutableList<Int>) {
         // commit purchase to the internet
 
         buy_view.visibility = GONE
@@ -161,7 +163,21 @@ class CartActivity : AppCompatActivity() {
         nothing_text.text = getString(R.string.ordered)
         subtotal_text.text = String.format(getString(R.string.subtotal), moneyfi(0.00))
 
+
+        val b = Buytem(mutableListOf(), "pending", FirebaseAuth.getInstance().uid ?: "FAILURE")
+        for ((i, _) in cartItems.withIndex()) {
+            b.items.add(PartialBuytem(numItems[i], "/products/${cartItems[i].name}"))
+        }
+        buyProducts(b)
         sp.edit().clear().apply()
         buy_button.isEnabled = false
     }
+
+    private inline fun buyProducts(b: Buytem) {
+        val fb = FirebaseFirestore.getInstance(FirebaseAuth.getInstance().app)
+        fb.collection("orders").add(b)
+    }
 }
+
+public data class PartialBuytem(val count: Int, val ref: String)
+public data class Buytem(val items: MutableList<PartialBuytem>, val state: String, val user: String)
