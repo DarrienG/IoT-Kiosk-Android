@@ -19,6 +19,7 @@ import com.darrienglasser.iot_kiosk.Model.RShopItem
 import com.darrienglasser.iot_kiosk.Model.SnackModel
 import com.darrienglasser.iot_kiosk.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_cart.*
 import retrofit2.Call
@@ -163,10 +164,11 @@ class CartActivity : AppCompatActivity() {
         nothing_text.text = getString(R.string.ordered)
         subtotal_text.text = String.format(getString(R.string.subtotal), moneyfi(0.00))
 
+        val fb = FirebaseFirestore.getInstance(FirebaseAuth.getInstance().app)
 
         val b = Buytem(mutableListOf(), "pending", FirebaseAuth.getInstance().uid ?: "FAILURE")
         for ((i, _) in cartItems.withIndex()) {
-            b.items.add(PartialBuytem(numItems[i], "/products/${cartItems[i].name}"))
+            b.items.add(PartialBuytem(numItems[i], fb.collection("products").document(cartItems[i].name)))
         }
         buyProducts(b)
         sp.edit().clear().apply()
@@ -179,5 +181,5 @@ class CartActivity : AppCompatActivity() {
     }
 }
 
-public data class PartialBuytem(val count: Int, val ref: String)
+public data class PartialBuytem(val count: Int, val ref: DocumentReference)
 public data class Buytem(val items: MutableList<PartialBuytem>, val state: String, val user: String)

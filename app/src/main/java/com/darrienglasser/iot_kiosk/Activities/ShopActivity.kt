@@ -79,8 +79,8 @@ class ShopActivity : AppCompatActivity() {
             }
 
             override fun onBuyClick(si: ShopItem) {
-                val b = Buytem(mutableListOf(PartialBuytem(1, "/products/${si.name}")), "pending", FirebaseAuth.getInstance().uid ?: "FAILURE")
                 val fb = FirebaseFirestore.getInstance(FirebaseAuth.getInstance().app)
+                val b = Buytem(mutableListOf(PartialBuytem(1, fb.collection("products").document(si.name))), "pending", FirebaseAuth.getInstance().uid ?: "FAILURE")
                 fb.collection("orders").add(b)
                 Toast.makeText(applicationContext,
                         "Thanks for buying ${si.name}! Your purchase has been ordered",
